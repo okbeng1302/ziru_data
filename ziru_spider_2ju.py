@@ -73,7 +73,7 @@ class Handler(BaseHandler):
             room_name = response.doc('div[class="room_name"] > h2').text().encode("utf-8")
 
             # 房间地区
-            location_temp = response.doc("span.ellipsis").text()
+            location_temp = response.doc("div.room_name > p > span.ellipsis").text()
             loc_1 = location_temp.find("]")
             location = location_temp[1:loc_1].split(" ")[0]
             loc_attr1 = location_temp[1:loc_1].split(" ")[len(location_temp[1:loc_1].split(" "))-1]
@@ -98,7 +98,7 @@ class Handler(BaseHandler):
                         square = room_square.replace(u"约",'')
                 # 房间朝向
                 if index == 2:
-                    face = item.text().split()[1].encode("utf-8")
+                    direction = item.text().split()[1].encode("utf-8")
                 # 房间户型
                 if index == 3:
                     room_type = item.text().split()[1].encode("utf-8")
